@@ -7,6 +7,10 @@ import { useMemo, useRef, useState } from 'react'
 import { Line, useCursor, MeshDistortMaterial } from '@react-three/drei'
 import { useRouter } from 'next/navigation'
 
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import { useLoader } from '@react-three/fiber'
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+
 export const Blob = ({ route = '/', ...props }) => {
   const router = useRouter()
   const [hovered, hover] = useState(false)
@@ -52,14 +56,6 @@ export const Logo = ({ route = '/blob', ...props }) => {
       </mesh>
     </group>
   )
-}
-
-export function Duck(props) {
-  const { scene } = useGLTF('/duck.glb')
-
-  useFrame((state, delta) => (scene.rotation.y += delta))
-
-  return <primitive object={scene} {...props} />
 }
 export function Dog(props) {
   const { scene } = useGLTF('/dog.glb')
