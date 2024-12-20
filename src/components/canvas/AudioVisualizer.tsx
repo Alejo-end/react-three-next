@@ -1,9 +1,9 @@
-/* import { createDevice, Device, Parameter } from '@rnbo/js';
+import { createDevice, Device, Parameter } from '@rnbo/js';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import p5 from 'p5';
 import { createRoot, Root } from 'react-dom/client';
-import { Button } from "@/components/ui/button"
 import { Volume2, VolumeX } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 type AudioVisualizerProps = {
     children?: React.ReactNode;
@@ -58,7 +58,7 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
         let childrenContainer: HTMLDivElement;
 
         p.setup = () => {
-            const canvas = p.createCanvas(920, 920);
+            const canvas = p.createCanvas(420, 420);
             canvas.parent(sketchRef.current!);
 
             p.noCursor();
@@ -97,7 +97,7 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
             p.fill(360 - p.mouseY / 2, 100, 100);
             p.circle(460, 460, p.mouseX + 1);
 
-            
+
 
             // Position the children container to follow rectangle
             if (childrenContainer) {
@@ -169,19 +169,19 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
     }, [children]);
 
     return (
-        <div className="relative md:w-[920px] md:h-[920px]">
-            <div ref={sketchRef} className="absolute top-0 left-0" />
+        <div className="relative md:size-[420px]">
+            <div ref={sketchRef} className="absolute left-0 top-0" />
             <div
                 ref={childrenContainerRef}
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             />
-            <div className="absolute bottom-4 left-4 right-4 flex items-center gap-4 bg-black/50 p-2 rounded-md w-12">
+            <div className="absolute inset-x-4 bottom-4 flex w-12 items-center gap-4 rounded-md bg-black/50 p-2">
                 <Button onClick={toggleMute} variant="ghost" size="icon" aria-label={isMuted ? "Unmute" : "Mute"}>
-                    {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
+                    {isMuted ? <VolumeX className="size-6" /> : <Volume2 className="size-6" />}
                 </Button>
             </div>
         </div>
     );
 };
 
-export default AudioVisualizer; */
+export default AudioVisualizer; 

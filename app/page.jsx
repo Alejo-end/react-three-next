@@ -1,5 +1,7 @@
 'use client'
 
+import AudioVisualizer from '@/components/canvas/AudioVisualizer'
+import PianoSketch from '@/components/canvas/PianoSketch'
 import { TrashCan } from '@/components/canvas/TrashCan'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
@@ -61,23 +63,19 @@ export default function Page() {
           <p className='mb-2 text-gray-600'>Drag, scroll, pinch, and rotate the canvas.</p>
         </div>
 
+
+        {/* third  row */}
         {/* second row */}
 
         <div className='relative my-12 size-full py-6 sm:w-1/2 md:mb-40'>
-          <View orbit className='relative h-48 sm:w-full md:h-96'>
-            <Suspense fallback={null}>
-              <Dog scale={2} position={[0, -1.6, 0]} rotation={[0.0, -0.3, 0]} />
-              <Common color={'lightpink'} />
-            </Suspense>
-          </View>
+          <Suspense fallback={null}>
+            <AudioVisualizer />
+          </Suspense>
         </div>
         <div className='relative h-48 w-full p-6 sm:w-1/2 md:my-12 md:mb-40'>
-          <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>Dom and 3D are synchronized</h2>
+          <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>A bit of MaxMSP and RNBO</h2>
           <p className='mb-8 text-gray-600'>
-            3D Divs are renderer through the View component. It uses gl.scissor to cut the viewport into segments. You
-            tie a view to a tracking div which then controls the position and bounds of the viewport. This allows you to
-            have multiple views with a single, performant canvas. These views will follow their tracking elements,
-            scroll along, resize, etc.
+            A micro synthetizer made with MaxMSP and RNBO.
           </p>
         </div>
       </div>
