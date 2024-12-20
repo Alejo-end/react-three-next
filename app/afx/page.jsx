@@ -28,7 +28,7 @@ export default function Page() {
         <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
           <p className='w-full uppercase'>You have discovered the easter egg.</p>
           <h1 className='my-4 text-5xl font-bold leading-tight'>Paid with my lunch benefit</h1>
-          <p className='mb-8 text-2xl leading-normal'>I don't know do whatever you want.</p>
+          <p className='mb-8 text-2xl leading-normal'>I dont know do whatever you want.</p>
         </div>
       </div>
 
