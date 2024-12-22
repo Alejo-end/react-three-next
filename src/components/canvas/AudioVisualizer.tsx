@@ -58,7 +58,7 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
         let childrenContainer: HTMLDivElement;
 
         p.setup = () => {
-            const canvas = p.createCanvas(420, 420);
+            const canvas = p.createCanvas(920, 920);
             canvas.parent(sketchRef.current!);
 
             p.noCursor();
@@ -169,7 +169,7 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
     }, [children]);
 
     return (
-        <div className="relative md:size-[420px]">
+        <div className="relative md:size-[920px]">
             <div ref={sketchRef} className="absolute left-0 top-0" />
             <div
                 ref={childrenContainerRef}

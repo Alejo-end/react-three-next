@@ -1,14 +1,11 @@
 'use client'
 
-import AudioVisualizer from '@/components/canvas/AudioVisualizer'
-import PianoSketch from '@/components/canvas/PianoSketch'
-import { TrashCan } from '@/components/canvas/TrashCan'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
+import { Carousel } from './components/Carousel'
+import { Card } from './components/ui/card'
 
 const Logo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Logo), { ssr: false })
-const Dog = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Dog), { ssr: false })
-const Duck = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Duck), { ssr: false })
 const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => (
@@ -27,14 +24,28 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
 const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
 
 export default function Page() {
+  const carouselItemsThree = [
+    { component: "/images/afx.png", route: '/three/afx' },
+    { component: "/images/trash.png", route: '/three/trash' },
+    { component: "/images/afx.png" },
+  ]
+  const carouselItemsP5 = [
+    { component: "/images/piano.png", route: '/p5/piano' },
+    { component: "/images/livecoding.png", route: '/p5/hydra' },
+    { component: "/images/afx.png" },
+  ]
+  const carouselItemsMaxMSP = [
+    { component: "/images/audiovisualizer.png", route: '/rnbo/afx' },
+    { component: "/images/idm5r.png", route: '/rnbo/trash' },
+  ]
   return (
     <>
       <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
         {/* jumbo */}
         <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
-          <p className='w-full uppercase'>Three.js + P5.js + RNBO</p>
-          <h1 className='my-4 text-5xl font-bold leading-tight'>Made by Alejandro?</h1>
-          <p className='mb-8 text-2xl leading-normal'>A small website for my Three.js Portfolio.</p>
+          <p className='w-full uppercase'>Hey there!</p>
+          <h1 className='my-4 text-5xl font-bold leading-tight'>Welcome to Alejandro? Portfolio</h1>
+          <p className='mb-8 text-2xl leading-normal'>A small website for hobbies, art and sound experimentation.</p>
         </div>
 
         <div className='w-full text-center md:w-3/5'>
@@ -48,36 +59,23 @@ export default function Page() {
       </div>
 
       <div className='mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row  lg:w-4/5'>
-        {/* first row */}
-        <div className='relative my-12 size-full py-6 sm:w-1/2 md:mb-40'>
-          <View orbit className='relative h-48 sm:w-full md:h-96'>
-            <Suspense fallback={null}>
-              <TrashCan route='/blob' scale={2} position={[0, -.2, 0]} />
-              <Common color={'lightgray'} />
-            </Suspense>
-          </View>
-        </div>
-        <div className='relative h-48 w-full p-6 sm:w-1/2 md:my-12 md:mb-40'>
-          <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>Random trash can from Helsinki</h2>
-          <p className='mb-2 text-gray-600'>Scanned using RealityScan from UnrealEngine.</p>
-          <p className='mb-2 text-gray-600'>Drag, scroll, pinch, and rotate the canvas.</p>
-        </div>
+
+        <Card className="my-6 w-full px-16 py-6">
+          <h1 className="mb-8 text-xl font-bold sm:text-4xl">Three.js</h1>
+          <Carousel items={carouselItemsThree} />
+        </Card>
+
+        <Card className="my-6 w-full px-16 py-6">
+          <h1 className="mb-8 text-xl font-bold sm:text-4xl">P5.js + Hydra Video Synth</h1>
+          <Carousel items={carouselItemsP5} />
+        </Card>
+
+        <Card className="my-6 w-full px-16 py-6">
+          <h1 className="mb-8 text-xl font-bold sm:text-4xl">MaxMSP + RNBO</h1>
+          <Carousel items={carouselItemsMaxMSP} />
+        </Card>
 
 
-        {/* third  row */}
-        {/* second row */}
-
-        <div className='relative my-12 size-full py-6 sm:w-1/2 md:mb-40'>
-          <Suspense fallback={null}>
-            <AudioVisualizer />
-          </Suspense>
-        </div>
-        <div className='relative h-48 w-full p-6 sm:w-1/2 md:my-12 md:mb-40'>
-          <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>A bit of MaxMSP and RNBO</h2>
-          <p className='mb-8 text-gray-600'>
-            A micro synthetizer made with MaxMSP and RNBO.
-          </p>
-        </div>
       </div>
     </>
   )
