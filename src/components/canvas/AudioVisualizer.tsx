@@ -1,187 +1,180 @@
-import { createDevice, Device, Parameter } from '@rnbo/js';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import p5 from 'p5';
-import { createRoot, Root } from 'react-dom/client';
-import { Volume2, VolumeX } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+'use client'
+
+import { createDevice, Device, Parameter } from '@rnbo/js'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
+import p5 from 'p5'
+import { createRoot, Root } from 'react-dom/client'
+import { Volume2, VolumeX } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 type AudioVisualizerProps = {
-    children?: React.ReactNode;
-};
+    children?: React.ReactNode
+}
 
 const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
-    const sketchRef = useRef<HTMLDivElement>(null);
-    const childrenContainerRef = useRef<HTMLDivElement>(null);
-    const audioContextRef = useRef<AudioContext | null>(null);
-    const deviceRef = useRef<Device | null>(null);
-    const xParamRef = useRef<Parameter | null>(null);
-    const yParamRef = useRef<Parameter | null>(null);
-    const gainParamRef = useRef<Parameter | null>(null);
-    const reactRootRef = useRef<Root | null>(null);
-    const p5InstanceRef = useRef<p5 | null>(null);
+    const sketchRef = useRef<HTMLDivElement>(null)
+    const childrenContainerRef = useRef<HTMLDivElement>(null)
+    const audioContextRef = useRef<AudioContext | null>(null)
+    const deviceRef = useRef<Device | null>(null)
+    const xParamRef = useRef<Parameter | null>(null)
+    const yParamRef = useRef<Parameter | null>(null)
+    const gainParamRef = useRef<Parameter | null>(null)
+    const reactRootRef = useRef<Root | null>(null)
+    const p5InstanceRef = useRef<p5 | null>(null)
 
-    const [isMuted, setIsMuted] = useState(false);
-    const [gainValue, setGainValue] = useState();
+    const [isMuted, setIsMuted] = useState(false)
+    const [gainValue, setGainValue] = useState<number>()
 
     const createSketch = useCallback((p: p5) => {
-        if (!window) return;
-        // Use useCallback to memoize loadRNBO and wrap it inside the sketch creation
+        if (typeof window === 'undefined') return
+
         const loadRNBO = async (audioContext: AudioContext) => {
-            await audioContext.resume();
+            await audioContext.resume()
 
-            const rawPatcher = await fetch('/patches/patch.export.json');
-            const patcher = await rawPatcher.json();
+            const rawPatcher = await fetch('/patches/patch.export.json')
+            const patcher = await rawPatcher.json()
 
-            const device = await createDevice({ context: audioContext, patcher });
-            deviceRef.current = device;
+            const device = await createDevice({ context: audioContext, patcher })
+            deviceRef.current = device
 
-            // Connect device directly to audio context destination
-            device.node.connect(audioContext.destination);
+            device.node.connect(audioContext.destination)
 
-            // Get references to RNBO parameters
-            xParamRef.current = device.parametersById.get('x');
-            yParamRef.current = device.parametersById.get('y');
+            xParamRef.current = device.parametersById.get('x')
+            yParamRef.current = device.parametersById.get('y')
 
-            // Get reference to gain parameter from the Max patcher
-            const gainParam = device.parametersById.get('gain');
-            gainParamRef.current = gainParam;
+            const gainParam = device.parametersById.get('gain')
+            gainParamRef.current = gainParam
 
-            // Set initial gain value if parameter exists
             if (gainParam) {
-                // Set initial value from the RNBO parameter or use default
-                setGainValue(gainParam.normalizedValue);
+                setGainValue(gainParam.normalizedValue)
             }
-        };
+        }
 
-        let xValue = 0;
-        let yValue = 0;
-        let childrenContainer: HTMLDivElement;
+        let xValue = 0
+        let yValue = 0
+        let childrenContainer: HTMLDivElement
 
         p.setup = () => {
-            const canvas = p.createCanvas(920, 920);
-            canvas.parent(sketchRef.current!);
+            const canvas = p.createCanvas(p.windowWidth, p.windowHeight)
+            canvas.parent(sketchRef.current!)
 
-            p.noCursor();
-            p.colorMode(p.HSB, 360, 100, 100);
-            p.rectMode(p.CENTER);
-            p.noStroke();
-            // Create container for React children
-            childrenContainer = document.createElement('div');
-            childrenContainer.style.position = 'absolute';
-            childrenContainer.style.top = '0';
-            childrenContainer.style.left = '0';
-            childrenContainer.style.width = '50%';
-            childrenContainer.style.height = '50%';
-            sketchRef.current?.appendChild(childrenContainer);
-            childrenContainer.style.left = '0';
-            childrenContainer.style.width = '50%';
-            childrenContainer.style.height = '50%';
-            childrenContainer.style.pointerEvents = 'none';
+            p.noCursor()
+            p.colorMode(p.HSB, 360, 100, 100)
+            p.rectMode(p.CENTER)
+            p.noStroke()
+
+            childrenContainer = document.createElement('div')
+            childrenContainer.style.position = 'absolute'
+            childrenContainer.style.top = '0'
+            childrenContainer.style.left = '0'
+            childrenContainer.style.width = '100%'
+            childrenContainer.style.height = '100%'
+            childrenContainer.style.pointerEvents = 'none'
+            sketchRef.current?.appendChild(childrenContainer)
 
             if (childrenContainerRef.current && children) {
                 if (!reactRootRef.current) {
-                    reactRootRef.current = createRoot(childrenContainer);
+                    reactRootRef.current = createRoot(childrenContainer)
                 }
-                reactRootRef.current.render(children);
+                reactRootRef.current.render(children)
             }
-            // Initialize Audio Context
-            audioContextRef.current = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-            loadRNBO(audioContextRef.current);
 
-            // Resume the AudioContext on mouse click
-            p.mousePressed = startAudioContext;
-        };
+            audioContextRef.current = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
+            loadRNBO(audioContextRef.current)
+
+            p.mousePressed = startAudioContext
+        }
 
         p.draw = () => {
-            p.background(p.mouseY / 2, 100, 100);
-            p.fill(360 - p.mouseY / 2, 100, 100);
-            p.circle(460, 460, p.mouseX + 1);
+            p.background(p.mouseY / 2, 100, 100)
+            p.fill(360 - p.mouseY / 2, 100, 100)
+            const size = Math.min(p.width, p.height) * 0.8
+            p.circle(p.width / 2, p.height / 2, p.map(p.mouseX, 0, p.width, 0, size))
 
-
-
-            // Position the children container to follow rectangle
             if (childrenContainer) {
-                childrenContainer.style.transform = `translate(${200 - (p.mouseX + 1) / 2}px, ${200 - (p.mouseX + 1) / 2}px)`;
+                const containerSize = Math.min(200, p.width * 0.3, p.height * 0.3)
+                childrenContainer.style.transform = `translate(${p.width / 2 - containerSize / 2}px, ${p.height / 2 - containerSize / 2}px)`
+                childrenContainer.style.width = `${containerSize}px`
+                childrenContainer.style.height = `${containerSize}px`
             }
 
-            yValue = p.map(p.mouseY, 0, p.height, 0, 1);
-            xValue = p.map(p.mouseX, 0, p.width, 0, 1);
+            yValue = p.map(p.mouseY, 0, p.height, 0, 1)
+            xValue = p.map(p.mouseX, 0, p.width, 0, 1)
 
-            // Send normalized values to the RNBO patch parameters
             if (yParamRef.current) {
-                yParamRef.current.normalizedValue = yValue;
+                yParamRef.current.normalizedValue = yValue
             }
             if (xParamRef.current) {
-                xParamRef.current.normalizedValue = xValue;
+                xParamRef.current.normalizedValue = xValue
             }
-        };
+        }
 
-        return p;
-    }, [children]);
+        p.windowResized = () => {
+            p.resizeCanvas(p.windowWidth, p.windowHeight)
+        }
+
+        return p
+    }, [children])
 
     const startAudioContext = () => {
-        const audioContext = audioContextRef.current;
+        const audioContext = audioContextRef.current
         if (audioContext && audioContext.state === 'suspended') {
-            audioContext.resume();
+            audioContext.resume()
         }
-    };
+    }
 
     const toggleMute = () => {
-        const newMutedState = !isMuted;
-        setIsMuted(newMutedState);
+        const newMutedState = !isMuted
+        setIsMuted(newMutedState)
 
-        if (gainParamRef.current) {
-            // Set gain to 0 when muted, otherwise restore previous value
-            gainParamRef.current.normalizedValue = newMutedState ? 0 : gainValue;
+        if (gainParamRef.current && gainValue !== undefined) {
+            gainParamRef.current.normalizedValue = newMutedState ? 0 : gainValue
         }
-    };
+    }
 
     useEffect(() => {
-        // Initialize p5.js instance
-        p5InstanceRef.current = new p5(createSketch, sketchRef.current!);
+        p5InstanceRef.current = new p5(createSketch, sketchRef.current!)
 
-        // Cleanup on unmount
         return () => {
-            // Safely unmount React root
             if (reactRootRef.current) {
-                reactRootRef.current.unmount();
-                reactRootRef.current = null;
+                reactRootRef.current.unmount()
+                reactRootRef.current = null
             }
 
-            // Remove p5 instance
             if (p5InstanceRef.current) {
-                p5InstanceRef.current.remove();
-                p5InstanceRef.current = null;
+                p5InstanceRef.current.remove()
+                p5InstanceRef.current = null
             }
 
-            // Close audio context
             if (audioContextRef.current) {
-                audioContextRef.current.close();
+                audioContextRef.current.close()
             }
-        };
-    }, [createSketch]);
+        }
+    }, [createSketch])
 
-    // Add children dependency to re-render when children change
     useEffect(() => {
         if (reactRootRef.current && children) {
-            reactRootRef.current.render(children);
+            reactRootRef.current.render(children)
         }
-    }, [children]);
+    }, [children])
 
     return (
-        <div className="relative md:size-[920px]">
-            <div ref={sketchRef} className="absolute left-0 top-0" />
+        <div className="relative w-full h-screen">
+            <div ref={sketchRef} className="absolute inset-0" />
             <div
                 ref={childrenContainerRef}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
             />
-            <div className="absolute inset-x-4 bottom-4 flex w-12 items-center gap-4 rounded-md bg-black/50 p-2">
-                <Button onClick={toggleMute} variant="ghost" size="icon" aria-label={isMuted ? "Unmute" : "Mute"}>
-                    {isMuted ? <VolumeX className="size-6" /> : <Volume2 className="size-6" />}
-                </Button>
+            <div className="absolute bottom-4 left-4 right-4 flex justify-center">
+                <div className="flex items-center gap-4 rounded-md bg-black/50 p-2">
+                    <Button onClick={toggleMute} variant="ghost" size="icon" aria-label={isMuted ? "Unmute" : "Mute"}>
+                        {isMuted ? <VolumeX className="h-6 w-6" /> : <Volume2 className="h-6 w-6" />}
+                    </Button>
+                </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default AudioVisualizer; 
+export default AudioVisualizer
+

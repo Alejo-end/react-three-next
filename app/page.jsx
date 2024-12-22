@@ -27,12 +27,11 @@ export default function Page() {
   const carouselItemsThree = [
     { component: "/images/afx.png", route: '/three/afx' },
     { component: "/images/trash.png", route: '/three/trash' },
-    { component: "/images/afx.png" },
+    { component: "/images/erzbrau.png", route: 'three/erzbrau' },
   ]
   const carouselItemsP5 = [
     { component: "/images/piano.png", route: '/p5/piano' },
-    { component: "/images/livecoding.png", route: '/p5/hydra' },
-    { component: "/images/afx.png" },
+    { component: "/images/hydra.png", route: 'https://hydra.ojack.xyz/?code=JTJGJTJGQWxlamFuZHJvJTNGJTBBYnBtJTIwJTNEJTIwMTIwJTBBJTBBczAuaW5pdENhbSgpJTBBczEuaW5pdFNjcmVlbigpJTBBc3JjKHMxKS5vdXQobzApJTBBc3JjKHMwKS5vdXQobzIpJTBBJTBBc3JjKG8wKS5tb2R1bGF0ZShub2lzZSgzJTJDMSklMkMlMjAwLjIpJTBBJTIwJTIwLnNoaWZ0KDAuOSUyQzAuMSUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXNyYyhvMCkubW9kdWxhdGUobzElMkMlMjAwLjIpLm91dChvMiklMEFzcmMobzIpLm1vZHVsYXRlKG8yJTJDJTIwMC4yKS5rYWxlaWQoNSkub3V0KG8zKSUwQXZvcm9ub2koNCUyQzAuNSUyQzAuNCklMEElMjAlMjAucGl4ZWxhdGUoMjAlMkMyMCklMEElMjAlMjAubW9kdWxhdGUobzIlMkMlMjAwLjEpJTBBJTIwJTIwLnNoaWZ0KDAuMSUyQzAuNCUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXJlbmRlcihvMiklMEElMEElMkYlMkZzcmMoczApLm1vZHVsYXRlKG8zKS5vdXQoKQ%3D%3D', external: true },
   ]
   const carouselItemsMaxMSP = [
     { component: "/images/audiovisualizer.png", route: '/rnbo/afx' },
@@ -61,7 +60,7 @@ export default function Page() {
       <div className='mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row  lg:w-4/5'>
 
         <Card className="my-6 w-full px-16 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-4xl">Three.js</h1>
+          <h1 className="mb-8 text-xl font-bold sm:text-4xl">Three.js + RealityScan</h1>
           <Carousel items={carouselItemsThree} />
         </Card>
 
@@ -77,6 +76,10 @@ export default function Page() {
 
 
       </div>
+      <footer className='flex w-full flex-col items-center justify-center p-12 text-center'>
+        <p className='text-gray-600'>Made by Alejandro?</p>
+        <p className='text-gray-600'>2024</p>
+      </footer>
     </>
   )
 }

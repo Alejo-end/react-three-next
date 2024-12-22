@@ -10,7 +10,7 @@ export const Carousel = ({ items }) => {
         {items.map((item, index) => (
           <CarouselItem key={index} className="group relative md:basis-1/2 lg:basis-1/3">
             <Image height={500} width={500} src={item.component} alt="img" />
-            {item.route && <CarouselItemOverlay route={item.route} />}
+            {item.route && <CarouselItemOverlay route={item.route} external={item.external} />}
           </CarouselItem>
         ))}
       </CarouselContent>
