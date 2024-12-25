@@ -2,11 +2,11 @@
 
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import { Carousel } from './components/Carousel'
-import { Card } from './components/ui/card'
+import { Carousel } from '../src/components/Carousel'
+import { Card } from '../src/components/ui/card'
 
-const Logo = dynamic(() => import('@/components/canvas/Examples').then((mod) => mod.Logo), { ssr: false })
-const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
+const Logo = dynamic(() => import('@/components/Examples').then((mod) => mod.Logo), { ssr: false })
+const View = dynamic(() => import('@/components/View').then((mod) => mod.View), {
   ssr: false,
   loading: () => (
     <div className='flex h-96 w-full flex-col items-center justify-center'>
@@ -21,7 +21,7 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
     </div>
   ),
 })
-const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
+const Common = dynamic(() => import('@/components/View').then((mod) => mod.Common), { ssr: false })
 
 export default function Page() {
   const carouselItemsThree = [
@@ -34,7 +34,7 @@ export default function Page() {
     { component: "/images/hydra.png", route: 'https://hydra.ojack.xyz/?code=JTJGJTJGQWxlamFuZHJvJTNGJTBBYnBtJTIwJTNEJTIwMTIwJTBBJTBBczAuaW5pdENhbSgpJTBBczEuaW5pdFNjcmVlbigpJTBBc3JjKHMxKS5vdXQobzApJTBBc3JjKHMwKS5vdXQobzIpJTBBJTBBc3JjKG8wKS5tb2R1bGF0ZShub2lzZSgzJTJDMSklMkMlMjAwLjIpJTBBJTIwJTIwLnNoaWZ0KDAuOSUyQzAuMSUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXNyYyhvMCkubW9kdWxhdGUobzElMkMlMjAwLjIpLm91dChvMiklMEFzcmMobzIpLm1vZHVsYXRlKG8yJTJDJTIwMC4yKS5rYWxlaWQoNSkub3V0KG8zKSUwQXZvcm9ub2koNCUyQzAuNSUyQzAuNCklMEElMjAlMjAucGl4ZWxhdGUoMjAlMkMyMCklMEElMjAlMjAubW9kdWxhdGUobzIlMkMlMjAwLjEpJTBBJTIwJTIwLnNoaWZ0KDAuMSUyQzAuNCUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXJlbmRlcihvMiklMEElMEElMkYlMkZzcmMoczApLm1vZHVsYXRlKG8zKS5vdXQoKQ%3D%3D', external: true },
   ]
   const carouselItemsMaxMSP = [
-    { component: "/images/audiovisualizer.png", route: '/rnbo/afx' },
+    { component: "/images/audiovisualizer.png", route: '/rnbo/phasor' },
     { component: "/images/idm5r.png", route: '/rnbo/trash' },
   ]
   return (

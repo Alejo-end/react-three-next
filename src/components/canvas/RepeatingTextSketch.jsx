@@ -1,25 +1,17 @@
 import { useEffect, useRef } from 'react';
 import p5 from 'p5';
 
-export interface RepeatingTextSketchProps {
-    sentence: string;
-    xPos: number;
-    yPos: number;
-    angle: number;
-    bgColor: string;
-}
-
-const RepeatingTextSketch = ({ sentence, xPos, yPos, angle, bgColor }: RepeatingTextSketchProps) => {
-    const sketchRef = useRef<HTMLDivElement>(null);
+const RepeatingTextSketch = ({ sentence, xPos, yPos, angle, bgColor }) => {
+    const sketchRef = useRef(null);
 
     useEffect(() => {
-        const sketch = (p: p5) => {
-            let bgColorBrightness: number;
-            let textWidth: number;
-            const textHeight: number = 30; // Set a constant height for the text
+        const sketch = (p) => {
+            let bgColorBrightness;
+            let textWidth;
+            const textHeight = 30; // Set a constant height for the text
 
             // Calculate brightness of the background color to adjust text color for contrast
-            const getBrightness = (color: p5.Color) => {
+            const getBrightness = (color) => {
                 const r = p.red(color);
                 const g = p.green(color);
                 const b = p.blue(color);
@@ -55,7 +47,7 @@ const RepeatingTextSketch = ({ sentence, xPos, yPos, angle, bgColor }: Repeating
             };
         };
 
-        const p5Instance = new p5(sketch, sketchRef.current!); // Use the non-null assertion operator to handle the type mismatch
+        const p5Instance = new p5(sketch, sketchRef.current); // Use the non-null assertion operator to handle the type mismatch
 
         return () => {
             p5Instance.remove();

@@ -1,12 +1,8 @@
 import { ExternalLinkIcon } from 'lucide-react';
 import React from 'react';
 
-interface CarouselItemOverlayProps {
-    route: string;
-    external?: boolean;
-}
 
-export const CarouselItemOverlay: React.FC<CarouselItemOverlayProps> = ({ route, external }) => {
+export const CarouselItemOverlay = ({ route, external }) => {
     return (
         <div className="absolute inset-0 flex items-center justify-center bg-black opacity-0 transition-opacity group-hover:opacity-50">
             <a

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 
 const Erzbrau = dynamic(() => import('@/components/canvas/Erzbrau').then((mod) => mod.Erzbrau), { ssr: false })
-const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.View), {
+const View = dynamic(() => import('@/components/View').then((mod) => mod.View), {
     ssr: false,
     loading: () => (
         <div className='flex h-96 w-full flex-col items-center justify-center'>
@@ -21,7 +21,7 @@ const View = dynamic(() => import('@/components/canvas/View').then((mod) => mod.
         </div>
     ),
 })
-const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mod.Common), { ssr: false })
+const Common = dynamic(() => import('@/components/View').then((mod) => mod.Common), { ssr: false })
 
 export default function Page() {
     return (

@@ -3,14 +3,14 @@ import { useEffect, useRef } from 'react';
 import p5 from 'p5';
 
 const PianoSketch = () => {
-    const sketchRef = useRef<HTMLDivElement>(null);
-    const windowRef = typeof window !== 'undefined' && window;
+    const sketchRef = useRef < HTMLDivElement > (null);
+    const windowRef = window;
 
 
 
     useEffect(() => {
         if (!windowRef) return;
-        const sketch = (p: p5) => {
+        const sketch = (p) => {
             const keyWidth = 60;
             const keyHeight = 220;
             const blackKeyOffset = 40;
@@ -19,7 +19,7 @@ const PianoSketch = () => {
             const pressedKeys = [false, false, false, false, false, false]; // Track which keys are pressed
 
             // Function to trigger additional actions on key press
-            const onKeyPress = (keyIndex: number) => {
+            const onKeyPress = (keyIndex) => {
                 console.log(`Key ${keyIndex} pressed`);
                 // You can call other functions here when a key is pressed
             };
@@ -66,7 +66,7 @@ const PianoSketch = () => {
             };
         };
 
-        const p5Instance = new p5(sketch, sketchRef.current!); // Initialize p5 instance
+        const p5Instance = new p5(sketch, sketchRef.current); // Initialize p5 instance
 
         return () => {
             p5Instance.remove(); // Clean up p5 instance on component unmount

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel as ShadcnCarousel, CarouselContent, CarouselNext, CarouselPrevious, CarouselItem } from '@/components/ui/carousel'
+import { Carousel as ShadcnCarousel, CarouselContent, CarouselNext, CarouselPrevious, CarouselItem } from './ui/carousel'
 import { CarouselItemOverlay } from './CarouselItemOverlay';
 import Image from 'next/image';
 

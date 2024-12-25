@@ -7,28 +7,24 @@ import { createRoot, Root } from 'react-dom/client'
 import { Volume2, VolumeX } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-type AudioVisualizerProps = {
-    children?: React.ReactNode
-}
-
-const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
-    const sketchRef = useRef<HTMLDivElement>(null)
-    const childrenContainerRef = useRef<HTMLDivElement>(null)
-    const audioContextRef = useRef<AudioContext | null>(null)
-    const deviceRef = useRef<Device | null>(null)
-    const xParamRef = useRef<Parameter | null>(null)
-    const yParamRef = useRef<Parameter | null>(null)
-    const gainParamRef = useRef<Parameter | null>(null)
-    const reactRootRef = useRef<Root | null>(null)
-    const p5InstanceRef = useRef<p5 | null>(null)
+const AudioVisualizer = ({ children }) => {
+    const sketchRef = useRef(null)
+    const childrenContainerRef = useRef(null)
+    const audioContextRef = useRef(null)
+    const deviceRef = useRef(null)
+    const xParamRef = useRef(null)
+    const yParamRef = useRef(null)
+    const gainParamRef = useRef(null)
+    const reactRootRef = useRef(null)
+    const p5InstanceRef = useRef(null)
 
     const [isMuted, setIsMuted] = useState(false)
-    const [gainValue, setGainValue] = useState<number>()
+    const [gainValue, setGainValue] = useState()
 
-    const createSketch = useCallback((p: p5) => {
+    const createSketch = useCallback((p) => {
         if (typeof window === 'undefined') return
 
-        const loadRNBO = async (audioContext: AudioContext) => {
+        const loadRNBO = async (audioContext) => {
             await audioContext.resume()
 
             const rawPatcher = await fetch('/patches/patch.export.json')
@@ -52,11 +48,11 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
 
         let xValue = 0
         let yValue = 0
-        let childrenContainer: HTMLDivElement
+        let childrenContainer
 
         p.setup = () => {
             const canvas = p.createCanvas(p.windowWidth, p.windowHeight)
-            canvas.parent(sketchRef.current!)
+            canvas.parent(sketchRef.current)
 
             p.noCursor()
             p.colorMode(p.HSB, 360, 100, 100)
@@ -79,7 +75,7 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
                 reactRootRef.current.render(children)
             }
 
-            audioContextRef.current = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
+            audioContextRef.current = new (window.AudioContext.webkitAudioContext)()
             loadRNBO(audioContextRef.current)
 
             p.mousePressed = startAudioContext
@@ -133,7 +129,7 @@ const AudioVisualizer = ({ children }: AudioVisualizerProps) => {
     }
 
     useEffect(() => {
-        p5InstanceRef.current = new p5(createSketch, sketchRef.current!)
+        p5InstanceRef.current = new p5(createSketch, sketchRef.current)
 
         return () => {
             if (reactRootRef.current) {
