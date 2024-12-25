@@ -2,6 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowBigLeftIcon } from 'lucide-react'
+import dynamic from 'next/dynamic'
 
 const AudioVisualizer = dynamic(() => import('@/components/canvas/AudioVisualizer').then((mod) => mod.AudioVisualizer), { ssr: false })
 
