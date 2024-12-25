@@ -2,7 +2,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { ArrowBigLeftIcon } from 'lucide-react'
-import AudioVisualizer from '../../../src/components/canvas/AudioVisualizer'
+
+const AudioVisualizer = dynamic(() => import('@/components/canvas/AudioVisualizer').then((mod) => mod.AudioVisualizer), { ssr: false })
 
 export default function Page() {
     return (

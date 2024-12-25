@@ -1,9 +1,9 @@
 'use client'
 import React from 'react'
-import PianoSketch from '@/components/canvas/PianoSketch'
 import Link from 'next/link'
 import { ArrowBigLeftIcon } from 'lucide-react'
 
+const PianoSketch = dynamic(() => import('@/components/canvas/PianoSketch').then((mod) => mod.PianoSketch), { ssr: false })
 export default function Page() {
     return (
         <>
