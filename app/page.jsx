@@ -4,6 +4,11 @@ import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { Carousel } from '../src/components/Carousel'
 import { Card } from '../src/components/ui/card'
+import { Link } from 'next/link'
+
+
+const PersonStandingIcon = () => import('lucide-react').then((mod) => mod.PersonStandingIcon)
+const GitCommitIcon = () => import('lucide-react').then((mod) => mod.GitCommitIcon)
 
 const Logo = dynamic(() => import('@/components/Examples').then((mod) => mod.Logo), { ssr: false })
 const View = dynamic(() => import('@/components/View').then((mod) => mod.View), {
@@ -30,12 +35,12 @@ export default function Page() {
     { component: "/images/erzbrau.png", route: 'three/erzbrau' },
   ]
   const carouselItemsP5 = [
-    { component: "/images/piano.png", route: '/p5/piano' },
+    { component: "/images/piano.png", route: 'https://react-p5-rnbo.vercel.app/sketches/piano-sketch' },
     { component: "/images/hydra.png", route: 'https://hydra.ojack.xyz/?code=JTJGJTJGQWxlamFuZHJvJTNGJTBBYnBtJTIwJTNEJTIwMTIwJTBBJTBBczAuaW5pdENhbSgpJTBBczEuaW5pdFNjcmVlbigpJTBBc3JjKHMxKS5vdXQobzApJTBBc3JjKHMwKS5vdXQobzIpJTBBJTBBc3JjKG8wKS5tb2R1bGF0ZShub2lzZSgzJTJDMSklMkMlMjAwLjIpJTBBJTIwJTIwLnNoaWZ0KDAuOSUyQzAuMSUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXNyYyhvMCkubW9kdWxhdGUobzElMkMlMjAwLjIpLm91dChvMiklMEFzcmMobzIpLm1vZHVsYXRlKG8yJTJDJTIwMC4yKS5rYWxlaWQoNSkub3V0KG8zKSUwQXZvcm9ub2koNCUyQzAuNSUyQzAuNCklMEElMjAlMjAucGl4ZWxhdGUoMjAlMkMyMCklMEElMjAlMjAubW9kdWxhdGUobzIlMkMlMjAwLjEpJTBBJTIwJTIwLnNoaWZ0KDAuMSUyQzAuNCUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXJlbmRlcihvMiklMEElMEElMkYlMkZzcmMoczApLm1vZHVsYXRlKG8zKS5vdXQoKQ%3D%3D', external: true },
   ]
   const carouselItemsMaxMSP = [
-    { component: "/images/audiovisualizer.png", route: '/rnbo/phasor' },
-    { component: "/images/idm5r.png", route: '/rnbo/trash' },
+    { component: "/images/audiovisualizer.png", route: 'https://react-p5-rnbo.vercel.app/sketches/mouse-theremin' },
+    { component: "/images/idm5r.png", route: 'https://react-p5-rnbo.vercel.app/sketches/mouse-theremin' },
   ]
   return (
     <>
@@ -78,7 +83,7 @@ export default function Page() {
       </div>
       <footer className='flex w-full flex-col items-center justify-center p-12 text-center'>
         <p className='text-gray-600'>Made by Alejandro?</p>
-        <p className='text-gray-600'>2024</p>
+
       </footer>
     </>
   )
