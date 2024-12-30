@@ -34,14 +34,13 @@ export default function Page() {
     { component: "/images/trash.png", route: '/three/trash' },
     { component: "/images/erzbrau.png", route: 'three/erzbrau' },
   ]
-  const carouselItemsP5 = [
-    { component: "/images/piano.png", route: 'https://alejandro-p5-rnbo.vercel.app/sketches/piano-sketch', external: true },
-
+  const carouselItemsLiveCoding = [
     { component: "/images/hydra.png", route: 'https://hydra.ojack.xyz/?code=JTJGJTJGQWxlamFuZHJvJTNGJTBBYnBtJTIwJTNEJTIwMTIwJTBBJTBBczAuaW5pdENhbSgpJTBBczEuaW5pdFNjcmVlbigpJTBBc3JjKHMxKS5vdXQobzApJTBBc3JjKHMwKS5vdXQobzIpJTBBJTBBc3JjKG8wKS5tb2R1bGF0ZShub2lzZSgzJTJDMSklMkMlMjAwLjIpJTBBJTIwJTIwLnNoaWZ0KDAuOSUyQzAuMSUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXNyYyhvMCkubW9kdWxhdGUobzElMkMlMjAwLjIpLm91dChvMiklMEFzcmMobzIpLm1vZHVsYXRlKG8yJTJDJTIwMC4yKS5rYWxlaWQoNSkub3V0KG8zKSUwQXZvcm9ub2koNCUyQzAuNSUyQzAuNCklMEElMjAlMjAucGl4ZWxhdGUoMjAlMkMyMCklMEElMjAlMjAubW9kdWxhdGUobzIlMkMlMjAwLjEpJTBBJTIwJTIwLnNoaWZ0KDAuMSUyQzAuNCUyQzAuMyklMEElMjAlMjAub3V0KG8xKSUwQXJlbmRlcihvMiklMEElMEElMkYlMkZzcmMoczApLm1vZHVsYXRlKG8zKS5vdXQoKQ%3D%3D', external: true },
   ]
   const carouselItemsMaxMSP = [
     { component: "/images/audiovisualizer.png", route: 'https://alejandro-p5-rnbo.vercel.app/sketches/mouse-theremin', external: true },
     { component: "/images/ambient-generator.png", route: 'https://alejandro-p5-rnbo.vercel.app/sketches/ambient-generator', external: true },
+    { component: "/images/piano.png", route: 'https://alejandro-p5-rnbo.vercel.app/sketches/piano-sketch', external: true },
   ]
   return (
     <>
@@ -70,14 +69,15 @@ export default function Page() {
           <Carousel items={carouselItemsThree} />
         </Card>
 
+
         <Card className="my-6 w-full px-16 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-4xl">P5.js + Hydra Video Synth</h1>
-          <Carousel items={carouselItemsP5} />
+          <h1 className="mb-8 text-xl font-bold sm:text-4xl">MaxMSP + P5.js + RNBO</h1>
+          <Carousel items={carouselItemsMaxMSP} />
         </Card>
 
         <Card className="my-6 w-full px-16 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-4xl">MaxMSP + RNBO</h1>
-          <Carousel items={carouselItemsMaxMSP} />
+          <h1 className="mb-8 text-xl font-bold sm:text-4xl">Live Coding</h1>
+          <Carousel items={carouselItemsLiveCoding} />
         </Card>
 
 
