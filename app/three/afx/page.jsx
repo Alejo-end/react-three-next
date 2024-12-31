@@ -31,8 +31,8 @@ export default function Page() {
           <ArrowBigLeftIcon className='size-8 cursor-pointer' />
         </Link>
         <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
-          <p className='w-full uppercase'>You have discovered an easter egg. Congratulations!</p>
-          <h1 className='my-4 text-5xl font-bold leading-tight'>Paid with my lunch benefit</h1>
+          <p className='w-full uppercase'>Drag, scroll, pinch, and rotate the canvas.</p>
+          <h1 className='my-4 text-5xl font-bold leading-tight'>Selected Ambient Works 2</h1>
           <p className='mb-8 text-2xl leading-normal'>I dont know do whatever you want.</p>
         </div>
       </div>

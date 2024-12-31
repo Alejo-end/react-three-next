@@ -66,20 +66,20 @@ export default function Page() {
 
         <Card className="my-6 w-full px-16 py-6">
           <h1 className="mb-8 text-xl font-bold sm:text-3xl">Three.js + RealityScan</h1>
-          <p className="mb-8 text-sm font-bold sm:text-xl">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
+          <p className="mb-8 text-sm font-light sm:text-xl">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
           <Carousel items={carouselItemsThree} />
         </Card>
 
 
         <Card className="my-6 w-full px-8 py-6">
           <h1 className="mb-8 text-xl font-bold sm:text-3xl">MaxMSP + P5.js + RNBO</h1>
-          <p className="mb-8 text-sm font-bold sm:text-xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
+          <p className="mb-8 text-sm font-light sm:text-xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
           <Carousel items={carouselItemsMaxMSP} />
         </Card>
 
         <Card className="my-6 w-full px-8 py-6">
           <h1 className="mb-8 text-xl font-bold sm:text-3xl">Live Coding</h1>
-          <p className="mb-8 text-sm font-bold sm:text-xl">A couple of scripts for Hydra Video Synth. the link has the code embedded.</p>
+          <p className="mb-8 text-sm font-light sm:text-xl">A couple of scripts for Hydra Video Synth. the link has the code embedded.</p>
           <Carousel items={carouselItemsLiveCoding} />
         </Card>
 
