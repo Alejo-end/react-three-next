@@ -5,6 +5,7 @@ import { Suspense } from 'react'
 import { Carousel } from '../src/components/Carousel'
 import { Card } from '../src/components/ui/card'
 import { Link } from 'next/link'
+import { ExternalLinkIcon } from 'lucide-react'
 
 
 const PersonStandingIcon = () => import('lucide-react').then((mod) => mod.PersonStandingIcon)
@@ -73,11 +74,12 @@ export default function Page() {
 
         <Card className="my-6 w-full p-6">
           <h1 className="mb-1 text-xl font-bold sm:text-3xl">MaxMSP + P5.js + RNBO</h1>
-          <p className="mb-6 text-sm font-light sm:text-xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
+          <p className="mb-1 text-sm font-light sm:text-xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
+          <a href="https://alejandro-p5-rnbo.vercel.app/" className='mb-6 flex items-center gap-2 text-gray-500 hover:text-gray-800'>Visit my p5 + rnbo sketches website <ExternalLinkIcon /></a>
           <Carousel items={carouselItemsMaxMSP} />
         </Card>
 
-        <Card className="my-6 w-full px-6">
+        <Card className="my-6 w-full p-6">
           <h1 className="mb-1 text-xl font-bold sm:text-3xl">Live Coding</h1>
           <p className="mb-6 text-sm font-light sm:text-xl">A couple of scripts for Hydra Video Synth. some scripts may require access to the camera or to another window with videos to work.</p>
           <Carousel items={carouselItemsLiveCoding} />
