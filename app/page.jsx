@@ -65,21 +65,21 @@ export default function Page() {
       <div className='mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row  lg:w-4/5'>
 
         <Card className="my-6 w-full px-16 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-4xl">Three.js + RealityScan</h1>
-          <p className="mb-8 text-xl font-bold sm:text-4xl">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
+          <h1 className="mb-8 text-xl font-bold sm:text-3xl">Three.js + RealityScan</h1>
+          <p className="mb-8 text-xl font-bold sm:text-sm">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
           <Carousel items={carouselItemsThree} />
         </Card>
 
 
         <Card className="my-6 w-full px-16 py-6">
-          <p className="mb-8 text-xl font-bold sm:text-4xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
-          <h1 className="mb-8 text-xl font-bold sm:text-4xl">MaxMSP + P5.js + RNBO</h1>
+          <h1 className="mb-8 text-xl font-bold sm:text-3xl">MaxMSP + P5.js + RNBO</h1>
+          <p className="mb-8 text-xl font-bold sm:text-sm">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
           <Carousel items={carouselItemsMaxMSP} />
         </Card>
 
         <Card className="my-6 w-full px-16 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-4xl">Live Coding</h1>
-          <p className="mb-8 text-xl font-bold sm:text-4xl">A couple of scripts for Hydra Video Synth. the link has the code embedded.</p>
+          <h1 className="mb-8 text-xl font-bold sm:text-3xl">Live Coding</h1>
+          <p className="mb-8 text-xl font-bold sm:text-sm">A couple of scripts for Hydra Video Synth. the link has the code embedded.</p>
           <Carousel items={carouselItemsLiveCoding} />
         </Card>
 
