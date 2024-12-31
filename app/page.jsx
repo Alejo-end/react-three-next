@@ -64,29 +64,29 @@ export default function Page() {
 
       <div className='mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row  lg:w-4/5'>
 
-        <Card className="my-6 w-full px-16 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-3xl">Three.js + RealityScan</h1>
-          <p className="mb-8 text-sm font-light sm:text-xl">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
+        <Card className="my-6 w-full p-6">
+          <h1 className="mb-1 text-xl font-bold sm:text-3xl">Three.js + RealityScan</h1>
+          <p className="mb-6 text-sm font-light sm:text-xl">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
           <Carousel items={carouselItemsThree} />
         </Card>
 
 
-        <Card className="my-6 w-full px-8 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-3xl">MaxMSP + P5.js + RNBO</h1>
-          <p className="mb-8 text-sm font-light sm:text-xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
+        <Card className="my-6 w-full p-6">
+          <h1 className="mb-1 text-xl font-bold sm:text-3xl">MaxMSP + P5.js + RNBO</h1>
+          <p className="mb-6 text-sm font-light sm:text-xl">A couple of experiments with P5.js and RNBO. MaxMSP on the web.</p>
           <Carousel items={carouselItemsMaxMSP} />
         </Card>
 
-        <Card className="my-6 w-full px-8 py-6">
-          <h1 className="mb-8 text-xl font-bold sm:text-3xl">Live Coding</h1>
-          <p className="mb-8 text-sm font-light sm:text-xl">A couple of scripts for Hydra Video Synth. the link has the code embedded.</p>
+        <Card className="my-6 w-full px-6">
+          <h1 className="mb-1 text-xl font-bold sm:text-3xl">Live Coding</h1>
+          <p className="mb-6 text-sm font-light sm:text-xl">A couple of scripts for Hydra Video Synth. some scripts may require access to the camera or to another window with videos to work.</p>
           <Carousel items={carouselItemsLiveCoding} />
         </Card>
 
 
       </div>
       <footer className='flex w-full flex-col items-center justify-center p-12 text-center'>
-        <p className='text-gray-600'>Made by Alejandro?</p>
+        <p className='text-gray-600'>Made by<a href="https://alejandro-prtfl.vercel.app/" className='text-gray-500 hover:text-gray-800'> Alejandro?</a></p>
 
       </footer>
     </>
