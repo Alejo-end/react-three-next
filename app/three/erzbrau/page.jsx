@@ -26,7 +26,7 @@ const Common = dynamic(() => import('@/components/View').then((mod) => mod.Commo
 export default function Page() {
     return (
         <>
-            <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
+            <div className='z-10 mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
                 <Link href='/' className='cursor-pointer'>
                     <ArrowBigLeftIcon className='size-8 cursor-pointer' />
                 </Link>

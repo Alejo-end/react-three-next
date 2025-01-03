@@ -9,8 +9,8 @@ import { TextureLoader, MeshPhongMaterial } from 'three'
 export function Afx(props) {
     const {
         position = [0, 0, 0],
-        scale = [1, 1, 1],
-        rotation = [0, 0, 0]
+        scale = [20, 20, 20],
+        rotation = [20, 80, 50]
     } = props
 
     // Load materials and model

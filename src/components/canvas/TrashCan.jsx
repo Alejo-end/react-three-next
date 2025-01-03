@@ -10,7 +10,7 @@ export function TrashCan(props) {
     const {
         position = [0, 0, 0],
         scale = [1, 1, 1],
-        rotation = [0, 0, 0]
+        rotation = [0, 25, 0]
     } = props
 
     // Load materials and model

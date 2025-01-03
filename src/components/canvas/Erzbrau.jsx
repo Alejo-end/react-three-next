@@ -9,9 +9,10 @@ import { TextureLoader, MeshPhongMaterial } from 'three'
 export function Erzbrau(props) {
     const {
         position = [0, 0, 0],
-        scale = [1, 1, 1],
-        rotation = [0, 0, 0]
+        scale = [20, 20, 20],
+        rotation = [20, 80, 50]
     } = props
+
 
     // Load materials and model
     const materials = useLoader(MTLLoader, '/Erzbrau/Erzbrau.mtl')
@@ -33,6 +34,8 @@ export function Erzbrau(props) {
 
     // Apply materials and textures to the object when both materials and object are loaded
     useEffect(() => {
+        console.log(position, scale, rotation)
+
         if (materials && obj) {
             const loadedObject = obj.clone()
             loadedObject.traverse((child) => {

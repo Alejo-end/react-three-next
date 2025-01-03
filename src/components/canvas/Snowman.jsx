@@ -10,7 +10,7 @@ export function Snowman(props) {
     const {
         position = [0, 0, 0],
         scale = [1, 1, 1],
-        rotation = [0, 0, 0]
+        rotation = [20, 30, 50]
     } = props
 
     // Load materials and model
