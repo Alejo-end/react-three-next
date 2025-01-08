@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 
 const Snowman = dynamic(() => import('@/components/canvas/Snowman').then((mod) => mod.Snowman), { ssr: false })
 const View = dynamic(() => import('@/components/View').then((mod) => mod.View), {
-    ssr: false,
+    ssr: true,
     loading: () => (
         <div className='flex h-96 w-full flex-col items-center justify-center'>
             <svg className='-ml-1 mr-3 size-5 animate-spin text-black' fill='none' viewBox='0 0 24 24'>

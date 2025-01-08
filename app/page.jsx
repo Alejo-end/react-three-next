@@ -31,9 +31,10 @@ const Common = dynamic(() => import('@/components/View').then((mod) => mod.Commo
 
 export default function Page() {
   const carouselItemsThree = [
-    { component: "/images/afx.png", route: '/three/afx' },
+    { component: "/images/lintulahdenaukio.png", route: '/three/lintulahdenaukio' },
     { component: "/images/trash.png", route: '/three/trash' },
     { component: "/images/snowman.png", route: 'three/snowman' },
+    { component: "/images/afx.png", route: '/three/afx' },
     { component: "/images/erzbrau.png", route: 'three/erzbrau' },
   ]
   const carouselItemsLiveCoding = [
@@ -68,7 +69,7 @@ export default function Page() {
 
         <Card className="my-6 w-full p-6">
           <h1 className="mb-1 text-xl font-bold sm:text-3xl">Three.js + RealityScan</h1>
-          <p className="mb-6 text-sm font-light sm:text-xl">A tiny collection of 3D models and experiments with Three.js and RealityScan.</p>
+          <p className="mb-6 text-sm font-light sm:text-xl">A tiny collection of 3D models and experiments with Three.js and RealityScan. It may take a few seconds to load each model.</p>
           <Carousel items={carouselItemsThree} />
         </Card>
 
