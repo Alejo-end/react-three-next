@@ -24,9 +24,9 @@ export default function Page() {
                     <ArrowBigLeftIcon className='size-8 cursor-pointer' />
                 </Link>
                 <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
-                    <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>a sculpture from Lintulahdenaukio, Helsinki.</h2>
-                    <p className='mb-2 text-gray-600'>Scanned using RealityScan from UnrealEngine.</p>
-                    <p className='mb-2 text-gray-600'>Drag, scroll, pinch, and rotate the canvas.</p>
+                    <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>a puzzle cube.</h2>
+                    <p className='mb-2 text-gray-600'>Interlocking pieces, each built from unit cubes.</p>
+                    <p className='mb-2 text-gray-600'>The editor is live — change the code and the preview rebuilds.</p>
                 </div>
             </div>
 
