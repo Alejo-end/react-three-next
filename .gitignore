@@ -40,3 +40,6 @@ report.*.json
 
 # .vscode Debugging
 .vscode/*-debug-profile
+
+# 101MB, exceeds GitHub blob limit - host externally
+public/Lintulahdenaukio/Lintulahdenaukio.obj
